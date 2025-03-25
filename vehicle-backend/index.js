@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const vehicles = JSON.parse(fs.readFileSync("vehicles.json", "utf8"));
+const vehicles = JSON.parse(fs.readFileSync("vehicle_results.json", "utf8"));
 
 // Get all vehicles
 app.get("/api/vehicles", (req, res) => {

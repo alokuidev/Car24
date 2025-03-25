@@ -6,7 +6,8 @@ export const fetchVehicles = createAsyncThunk(
   "vehicles/fetchVehicles",
   async () => {
     const response = await axios.get("http://localhost:5000/api/vehicles");
-    return response.data; // Make sure API returns an array
+    //console.log(response.data.data)
+    return response.data.data; // Make sure API returns an array
   }
 );
 
@@ -23,10 +24,19 @@ const vehicleSlice = createSlice({
       const searchTerm = action.payload.toLowerCase();
       state.filteredData = state.data.filter(
         (vehicle) =>
-          vehicle.make.toLowerCase().includes(searchTerm) ||
+          vehicle.brand.toLowerCase().includes(searchTerm) ||
           vehicle.model.toLowerCase().includes(searchTerm)
       );
     },
+    filterVehiclesByPrice: (state, action) => {
+      const { searchTerm, minPrice, filterPrice } = action.payload;
+          console.log(action.payload)
+          state.filteredData = state.data.filter((vehicle) =>
+          vehicle.brand.toLowerCase().includes(searchTerm.toLowerCase()) &&
+          vehicle.price >= minPrice &&
+          vehicle.price <= filterPrice
+      );
+  },
   },
   extraReducers: (builder) => {
     builder
@@ -35,6 +45,7 @@ const vehicleSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchVehicles.fulfilled, (state, action) => {
+        //console.log(action.payload)
         state.loading = false;
         state.data = action.payload;
         state.filteredData = action.payload; // ✅ Initialize filteredData with all vehicles
@@ -46,5 +57,5 @@ const vehicleSlice = createSlice({
   },
 });
 
-export const { filterVehicles } = vehicleSlice.actions;
+export const { filterVehicles, filterVehiclesByPrice } = vehicleSlice.actions;
 export default vehicleSlice.reducer;

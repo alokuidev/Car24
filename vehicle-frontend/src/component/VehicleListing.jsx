@@ -9,7 +9,7 @@ const VehicleListing = () => {
   useEffect(() => {
     dispatch(fetchVehicles());
   }, [dispatch]);
-
+  if (loading) return true;
   if (loading) return <p>Loading vehicles...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -20,11 +20,11 @@ const VehicleListing = () => {
         {filteredData.length > 0 ? (
           filteredData.map((vehicle) => (
             <div className="bg-white p-4 rounded-lg shadow-md" key={vehicle.id}>
-              <img src="/image/car.png" alt={vehicle.make} className="w-full rounded-md"/>
-              <h2 className="text-lg font-semibold mt-2">{vehicle.make}</h2>
-              <p className="text-gray-500">{vehicle.model} • {vehicle.type}</p>
+              <img src={vehicle.images[0]} alt={vehicle.make} className="w-full rounded-md"/>
+              <h2 className="text-lg font-semibold mt-2">{vehicle.brand}</h2>
+              <p className="text-gray-500">{vehicle.model} • {vehicle.year}</p>
               <p className="text-lg font-bold mt-2"><span>&#8364;</span>{vehicle.price}</p>
-              <p className="text-sm text-gray-600">EMI Available</p>
+              <p className="text-sm text-gray-600">{vehicle.location}</p>
             </div>
           ))
         ) : (
