@@ -1,0 +1,5 @@
+[
+    { "id": 1, "make": "Tesla", "model": "Model 3", "price": 40000, "year": 2023 },
+    { "id": 2, "make": "Nissan", "model": "Leaf", "price": 32000, "year": 2022 }
+  ]
+  
