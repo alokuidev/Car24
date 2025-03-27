@@ -26,10 +26,10 @@ const VehiclePDP = () => {
               <p className="text-xl text-gray-600">{vehicle.price}</p>
               <p className="mt-2 text-gray-700">{vehicle.description}</p>
               <div className="mt-4">
-                <p><strong>Year:</strong> {vehicle.year}</p>
-                <p><strong>Fuel:</strong> {vehicle.fuel}</p>
-                <p><strong>Mileage:</strong> {vehicle.mileage}</p>
-                <p><strong>Engine:</strong> {vehicle.engine}</p>
+                <p><strong>Year:</strong> 2025</p>
+                <p><strong>Fuel:</strong> Diesel</p>
+                <p><strong>Mileage:</strong> 20Km/L</p>
+                <p><strong>Engine:</strong> Turbo</p>
               </div>
               <Button className="mt-4 w-full flex items-center gap-2">
                 <PhoneCall size={18} /> Contact Seller
